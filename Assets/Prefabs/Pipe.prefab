@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 4385101589352056959}
   m_Layer: 0
   m_Name: Scorer
-  m_TagString: Untagged
+  m_TagString: Scorer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

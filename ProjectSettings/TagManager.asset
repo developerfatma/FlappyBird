@@ -54,3 +54,6 @@ TagManager:
   - name: Bird
     uniqueID: 3052649899
     locked: 0
+  - name: Score
+    uniqueID: 1160852811
+    locked: 0
