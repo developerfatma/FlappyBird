@@ -9,7 +9,7 @@ Oyun hala geliştirme aşamasında olup, hem portföyümü geliştirmek hem de U
 
 - 🛠️ Unity ile sıfırdan oyun mekaniği kurulumu  
 - 🐤 Karakter (kuş) kontrolü ve fiziksel tepkileri  
-- 🧮 Sonsuz skor sistemi  
+- 🧮 Skor sistemi  
 - 🚧 Engel oluşturma (pipes)
 
 ---
@@ -19,7 +19,6 @@ Oyun hala geliştirme aşamasında olup, hem portföyümü geliştirmek hem de U
 - 🏁 Başlangıç menüsü ve oyun sonu ekranı  
 - 🔊 Ses efektleri ve müzik  
 - 🏆 Skor tablosu 
-- 🌆 Daha gelişmiş görsel öğeler (parallax efekt, animasyon vb.)
 
 ---
 
