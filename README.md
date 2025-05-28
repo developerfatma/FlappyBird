@@ -1,26 +1,18 @@
-# 🐦 Flappy Bird Clone – Unity (Devam Ediyor)
+# ✅ Flappy Bird Clone – Unity 
 
-Bu proje, popüler mobil oyun **Flappy Bird**'ün bir klonu olarak **Unity** ile geliştirilmektedir.  
-Oyun hala geliştirme aşamasında olup, hem portföyümü geliştirmek hem de Unity/C# becerilerimi pekiştirmek amacıyla yapılmaktadır.
-
----
-
-## 🎮 Özellikler (Şu Ana Kadar)
-
-- 🛠️ Unity ile sıfırdan oyun mekaniği kurulumu  
-- 🐤 Karakter (kuş) kontrolü ve fiziksel tepkileri  
-- 🧮 Skor sistemi  
-- 🚧 Engel oluşturma (pipes)
+Bu proje, popüler mobil oyun **Flappy Bird**'ün bir klonu olarak **Unity** ile geliştirilmiştir.
+Bu proje hem portföyümü geliştirmek hem de Unity/C# becerilerimi pekiştirmek amacıyla yapılmıştır.
 
 ---
 
-## 🔧 Planlanan Özellikler
+## 🎮 Özellikler
 
-- 🏁 Başlangıç menüsü ve oyun sonu ekranı  
-- 🔊 Ses efektleri ve müzik  
-- 🏆 Skor tablosu 
+- ✅ Unity ile sıfırdan oyun mekaniği kurulumu
+- ✅ Karakter (kuş) kontrolü ve fiziksel tepkileri
+- ✅ Skor sistemi
+- ✅ Engel oluşturma (pipes)
+- ✅ Oyun bitirme ve yeniden başlatma mekaniği ('R' tuşu)
+- ✅ Oyundan çıkış mekaniği ('Q' tuşu)
+- ✅ Kuşun yere düşmesiyle oyunun bitmesi
 
----
-
-📌 Geliştirme sürecini ve ilerlemeyi takip etmek için projeyi yıldızlamayı unutmayın!  
-Her türlü geri bildirime açığım. ✨
+📌 Geliştirme süreci tamamlanmıştır. Her türlü geri bildirime açığım. ✨
