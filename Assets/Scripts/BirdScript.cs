@@ -12,29 +12,51 @@ public class BirdScript : MonoBehaviour
     public float score;
     public Text gameOverText;
     public Text gameText;
+    private AudioSource flapSound;
+    private bool oyunBitti = false;
+    public AudioSource deathSoundSource; // <-- BURAYI PUBLIC YAPTIK!
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         score = 0;
+        flapSound = GetComponent<AudioSource>(); // Kanat sesi için AudioSource bileşenini al
+
+        // flapSound'ın atandığından emin ol
+        if (flapSound == null)
+        {
+            Debug.LogError("Kanat sesi için bir AudioSource bileşeni bulunamıyor! Lütfen kuş objesine ekleyin.");
+        }
+
+        // deathSoundSource'un Inspector'dan atandığından emin ol
+        if (deathSoundSource == null)
+        {
+            Debug.LogError("Ölüm sesi için AudioSource bileşeni atanmamış! Lütfen Inspector'dan atayın.");
+        }
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!oyunBitti && Input.GetMouseButtonDown(0))
         {
             rb.velocity = Vector2.up * jump;
+            if (flapSound != null)
+            {
+                flapSound.Play();
+            }
         }
         ScoreText.text = score.ToString();
 
         // Oyunun yeniden başlaması için 'R' tuşu kontrolü
-        if (Time.timeScale == 0 && Input.GetKeyDown(KeyCode.R))
+        if (oyunBitti && Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Mevcut sahneyi yeniden yükle
             Time.timeScale = 1; // Oyunu tekrar başlat
+            oyunBitti = false; // Oyun yeniden başladığında bu değişkeni sıfırla
         }
 
         // Oyundan çıkmak için 'Q' tuşu kontrolü
-        if (Time.timeScale == 0 && Input.GetKeyDown(KeyCode.Q))
+        if (oyunBitti && Input.GetKey(KeyCode.Q))
         {
             Application.Quit(); // Uygulamayı kapat
         }
@@ -42,29 +64,36 @@ public class BirdScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag =="Scorer")
+        if (collider.gameObject.tag == "Scorer")
         {
-            score++; 
+            score++;
         }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "pipe")
+        if (collision.gameObject.tag == "pipe" || collision.gameObject.CompareTag("Ground"))
         {
-            Time.timeScale = 0;
-            if (gameOverText != null)
+            if (!oyunBitti) // Ölüm sesini sadece bir kere çalmak için kontrol
             {
-                gameOverText.gameObject.SetActive(true); // Oyun bitti metnini göster
-                gameText.gameObject.SetActive(true); // Oyun bitti metnini göster
-            }
-        }
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            Time.timeScale = 0;
-            if (gameOverText != null)
-            {
-                gameOverText.gameObject.SetActive(true); // Oyun bitti metnini göster
-                gameText.gameObject.SetActive(true); // Oyun bitti metnini göster
+                Time.timeScale = 0;
+                oyunBitti = true;
+
+                // Ölüm sesini çal
+                if (deathSoundSource != null)
+                {
+                    deathSoundSource.Play();
+                }
+
+                // Oyun bitti metinlerini göster
+                if (gameOverText != null)
+                {
+                    gameOverText.gameObject.SetActive(true);
+                }
+                if (gameText != null) // gameText'i de kontrol et
+                {
+                    gameText.gameObject.SetActive(true);
+                }
             }
         }
     }
