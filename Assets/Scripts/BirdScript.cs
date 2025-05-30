@@ -13,31 +13,31 @@ public class BirdScript : MonoBehaviour
     public Text gameOverText;
     public Text gameText;
     private AudioSource flapSound;
-    private bool oyunBitti = false;
-    public AudioSource deathSoundSource; // <-- BURAYI PUBLIC YAPTIK!
+    private bool gameEnd = false;
+    public AudioSource deathSoundSource; 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         score = 0;
-        flapSound = GetComponent<AudioSource>(); // Kanat sesi için AudioSource bileşenini al
+        flapSound = GetComponent<AudioSource>(); 
 
-        // flapSound'ın atandığından emin ol
+       
         if (flapSound == null)
         {
-            Debug.LogError("Kanat sesi için bir AudioSource bileşeni bulunamıyor! Lütfen kuş objesine ekleyin.");
+            Debug.LogError("Cannot find an AudioSource component for wing sound! Please add it to the bird object.");
         }
 
-        // deathSoundSource'un Inspector'dan atandığından emin ol
+      
         if (deathSoundSource == null)
         {
-            Debug.LogError("Ölüm sesi için AudioSource bileşeni atanmamış! Lütfen Inspector'dan atayın.");
+            Debug.LogError("Cannot find an AudioSource component for wing sound! Please add it to the bird object.");
         }
     }
 
     void Update()
     {
-        if (!oyunBitti && Input.GetMouseButtonDown(0))
+        if (!gameEnd && Input.GetMouseButtonDown(0))
         {
             rb.velocity = Vector2.up * jump;
             if (flapSound != null)
@@ -47,18 +47,18 @@ public class BirdScript : MonoBehaviour
         }
         ScoreText.text = score.ToString();
 
-        // Oyunun yeniden başlaması için 'R' tuşu kontrolü
-        if (oyunBitti && Input.GetKey(KeyCode.R))
+        
+        if (gameEnd && Input.GetKey(KeyCode.R))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Mevcut sahneyi yeniden yükle
-            Time.timeScale = 1; // Oyunu tekrar başlat
-            oyunBitti = false; // Oyun yeniden başladığında bu değişkeni sıfırla
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
+            Time.timeScale = 1; 
+            gameEnd = false;
         }
 
-        // Oyundan çıkmak için 'Q' tuşu kontrolü
-        if (oyunBitti && Input.GetKey(KeyCode.Q))
+       
+        if (gameEnd && Input.GetKey(KeyCode.Q))
         {
-            Application.Quit(); // Uygulamayı kapat
+            Application.Quit(); 
         }
     }
 
@@ -74,23 +74,23 @@ public class BirdScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "pipe" || collision.gameObject.CompareTag("Ground"))
         {
-            if (!oyunBitti) // Ölüm sesini sadece bir kere çalmak için kontrol
+            if (!gameEnd) 
             {
                 Time.timeScale = 0;
-                oyunBitti = true;
+                gameEnd = true;
 
-                // Ölüm sesini çal
+               
                 if (deathSoundSource != null)
                 {
                     deathSoundSource.Play();
                 }
 
-                // Oyun bitti metinlerini göster
+                
                 if (gameOverText != null)
                 {
                     gameOverText.gameObject.SetActive(true);
                 }
-                if (gameText != null) // gameText'i de kontrol et
+                if (gameText != null) 
                 {
                     gameText.gameObject.SetActive(true);
                 }
