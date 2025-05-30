@@ -6,33 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class BirdScript : MonoBehaviour
 {
-    public float jump;
-    Rigidbody2D rb;
-    public Text ScoreText;
-    public float score;
-    public Text gameOverText;
-    public Text gameText;
-    private AudioSource flapSound;
-    private bool gameEnd = false;
-    public AudioSource deathSoundSource; 
+    [SerializeField]private float jump; 
+    [SerializeField]Rigidbody2D rb;
+    [SerializeField]private Text ScoreText;
+    [SerializeField]private float score;
+    [SerializeField]private Text gameOverText;
+    [SerializeField]private Text gameText;
+    [SerializeField]private AudioSource flapSound;
+    [SerializeField]private bool gameEnd = false;
+    [SerializeField]private AudioSource deathSoundSource; 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         score = 0;
-        flapSound = GetComponent<AudioSource>(); 
-
-       
-        if (flapSound == null)
-        {
-            Debug.LogError("Cannot find an AudioSource component for wing sound! Please add it to the bird object.");
-        }
-
-      
-        if (deathSoundSource == null)
-        {
-            Debug.LogError("Cannot find an AudioSource component for wing sound! Please add it to the bird object.");
-        }
     }
 
     void Update()
@@ -79,19 +65,10 @@ public class BirdScript : MonoBehaviour
                 Time.timeScale = 0;
                 gameEnd = true;
 
-               
-                if (deathSoundSource != null)
+                if (deathSoundSource != null || gameOverText != null)
                 {
                     deathSoundSource.Play();
-                }
-
-                
-                if (gameOverText != null)
-                {
                     gameOverText.gameObject.SetActive(true);
-                }
-                if (gameText != null) 
-                {
                     gameText.gameObject.SetActive(true);
                 }
             }

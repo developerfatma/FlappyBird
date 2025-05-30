@@ -20,7 +20,7 @@ public class PipeSpawnScript : MonoBehaviour
         {
             GameObject newpipe = Instantiate(pipe);
             newpipe.transform.position = transform.position + new Vector3(0,UnityEngine.Random.Range(-height, height), 0);
-            Destroy(newpipe,10);
+            Destroy(newpipe,15);
             timer = 0;
         }
         timer += Time.deltaTime;
