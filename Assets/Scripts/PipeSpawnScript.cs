@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PipeSpawnScript : MonoBehaviour
 {
-    public float maxTime = 1;
-    public float timer = 0;
-    public float height;
-    public GameObject pipe;
+    [SerializeField]private float maxTime = 1;
+    [SerializeField]private float timer = 0;
+    [SerializeField]private float height;
+    [SerializeField]private GameObject pipe;
     void Start()
     {
         GameObject newpipe = Instantiate(pipe);
@@ -19,10 +19,11 @@ public class PipeSpawnScript : MonoBehaviour
         if (timer > maxTime)
         {
             GameObject newpipe = Instantiate(pipe);
-            newpipe.transform.position = transform.position + new Vector3(0,UnityEngine.Random.Range(-height, height), 0);
-            Destroy(newpipe,15);
+            newpipe.transform.position = transform.position + new Vector3(0, UnityEngine.Random.Range(-height, height), 0);
+            Destroy(newpipe, 10);
             timer = 0;
         }
         timer += Time.deltaTime;
     }
+    
 }

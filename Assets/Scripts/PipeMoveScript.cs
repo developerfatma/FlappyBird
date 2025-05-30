@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PipeMoveScript : MonoBehaviour
 {
-    public float speed;
+    [SerializeField]private float speed;
     void Update()
     {
         transform.position += Vector3.left * speed * Time.deltaTime;  
