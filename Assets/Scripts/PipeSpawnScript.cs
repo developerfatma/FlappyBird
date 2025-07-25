@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PipeSpawnScript : MonoBehaviour
 {
-    [SerializeField]private float maxTime = 1;
-    [SerializeField]private float timer = 0;
-    [SerializeField]private float height;
-    [SerializeField]private GameObject pipe;
+    [SerializeField] private float maxTime = 1;
+    [SerializeField] private float timer = 0;
+    [SerializeField] private float height;
+    [SerializeField] private GameObject pipe;
     void Start()
     {
         GameObject newpipe = Instantiate(pipe);

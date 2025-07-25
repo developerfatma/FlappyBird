@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class BirdScript : MonoBehaviour
 {
-    [SerializeField]private float jump; 
-    [SerializeField]Rigidbody2D rb;
-    [SerializeField]private Text ScoreText;
-    [SerializeField]private float score;
-    [SerializeField]private Text gameOverText;
-    [SerializeField]private Text gameText;
-    [SerializeField]private AudioSource flapSound;
-    [SerializeField]private bool gameEnd = false;
-    [SerializeField]private AudioSource deathSoundSource; 
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] private float jump;    
+    [SerializeField] private float score; 
+    [SerializeField] private bool gameEnd = false;
+    [SerializeField] private Text ScoreText;
+    [SerializeField] private Text gameOverText;
+    [SerializeField] private Text gameText;
+    [SerializeField] private AudioSource flapSound;
+    
+    [SerializeField] private AudioSource deathSoundSource; 
 
     void Start()
     {
@@ -58,7 +59,7 @@ public class BirdScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "pipe" || collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("pipe") || collision.gameObject.CompareTag("Ground"))
         {
             if (!gameEnd) 
             {
